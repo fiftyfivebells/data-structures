@@ -24,7 +24,11 @@ int removeTail(SLList *list);
 
 // get/set value at given index in the provided list
 int getNode(int i, SLList *list);
+int getTail(SLList *list);
+int getHead(SLList *list);
 void setNode(int i, int data, SLList *list);
+void setTail(int data, SLList *list);
+void setHead(int data, SLList *list);
 
 // creates a new node and returns a pointer to it
 SLNode* makeNode(int data);

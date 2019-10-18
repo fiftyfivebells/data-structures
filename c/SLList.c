@@ -4,6 +4,66 @@
 
 
 /**
+ * Get/Set Methods:
+ * get walks to a specific node and returns the data that was there
+ * set walks to a specific node and changes the data that was there
+ */
+int getNode(int i, SLList *list) {
+    int      currPos = 0;           // our current position in the list
+    SLNode  *current = list->head;  // current node is the head of the list
+
+    // if we're getting from the tail, just use the tail reference
+    if (i == list->size - 1)
+	return list->tail->data;
+
+    // otherwise walk down the list to the item we want
+    while (currPos != i) {
+	if (currPos == i) break;
+
+	current = current->next;
+    }
+
+    return current->data;
+}
+
+int getHead(SLList *list) {
+    return getNode(0, list);
+}
+
+int getTail(SLList *list) {
+    return getNode(list->size - 1, list);
+}
+
+void setNode(int i, int data, SLList *list) {
+    int      currPos = 0;           // our current position in the list
+    SLNode  *current = list->head;  // current node is the head of the list
+
+    // if we're setting the tail, just use the tail reference
+    if (i == list->size - 1)
+	list->tail->data = data;
+
+    // otherwise we walk down the list looking for the index
+    else {
+	while (currPos != i) {
+	    if (currPos == i) break;
+
+	    current = current->next;
+	}
+
+	// set the node's data to the new data
+	current->data = data;
+    }
+}
+
+void setHead(int data, SLList *list) {
+    setNode(0, data, list);
+}
+
+void setTail(int data, SLList *list) {
+    setNode(list->size - 1, data, list);
+}
+
+/**
  * Add methods:
  * addNode adds a new node at any index in the list
  * addHead adds a new node at the head of the list
