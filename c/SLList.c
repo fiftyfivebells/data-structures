@@ -88,6 +88,87 @@ void addTail(int data, SLList *list) {
  * removeTail takes the tail off and returns the value there
  */
 
+// takes an index and SLList, removes the node at the index, frees it, and returns the data
+int removeNode(int i, SLList *list) {
+
+    // if i is zero, we're removing from head, so delegate to that function
+    if (i == 0)
+	return removeHead(list);
+
+    // if i is the last thing in the list, delegate to removeTail
+    if (i == list->size-1)
+	return removeTail(list);
+
+    SLNode  *current = list->head;
+    SLNode *previous = NULL;
+    int      currPos = 0;
+
+    while (current != NULL) {
+	if (currPos == i) break;
+
+	previous = current;
+	current = current->next;
+	currPos++;
+    }
+
+    // this is the data being returned from the function
+    int data = current->data;
+
+    // set the previous node's next pointer to the node after current
+    previous->next = current->next;
+
+    // then free the current node to deallocate the memory
+    free(current);
+
+    list->size--;
+
+    return data;
+}
+
+// takes in a SLList, frees the head, then returns the data
+int removeHead(SLList *list) {
+    SLNode *current = list->head;
+    int data = current->data;
+
+    // set the head to the next thing in the list
+    list->head = current->next;
+
+    // then free the old head
+    free(current);
+
+    // decrease the size of the list
+    list->size--;
+
+    return data;
+}
+
+// takes in the SLList, frees the tail, then returns the data
+int removeTail(SLList *list) {
+    SLNode  *current = list->head;
+    SLNode *previous = NULL;
+
+    // unfortunately, having a reference to the tail doesn't help remove it, we
+    // still need to walk to the one before it to set the tail after removal
+    while (current->next != NULL) {
+	previous = current;
+	current = current->next;
+    }
+
+    int data = current->data;
+
+    // set the previous node's next to NULL, since it's now last in the list
+    previous->next = NULL;
+
+    // set the list's tail to the previous node
+    list->tail = previous;
+
+    // then free up the now removed node
+    free(current);
+
+    list->size--;
+
+    return data;
+}
 
 // allocates memory for a new SLNode, sets its data, initializes its pointer to
 // NULL, and then returns a pointer to the new node
