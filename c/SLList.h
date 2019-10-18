@@ -1,6 +1,14 @@
 /* Type Definitions */
-typedef struct SLNode SLNode;
-typedef struct SLList SLList;
+typedef struct SLNode {
+    int data;
+    struct SLNode *next;
+} SLNode;
+
+typedef struct SLList {
+    int size;
+    struct SLNode *head;
+    struct SLNode *tail;
+} SLList;
 
 /* Function Definitions */
 
