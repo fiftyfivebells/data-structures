@@ -13,7 +13,7 @@ typedef struct SLList {
 /* Function Definitions */
 
 // adds given int at given index in the provided list, or to the back/fronvoid add(int i, int data, SLList *list);
-void addNode(int data, SLList *list);
+void addNode(int i, int data, SLList *list);
 void addHead(int data, SLList *list);
 void addTail(int data, SLList *list);
 
