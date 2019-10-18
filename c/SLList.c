@@ -26,6 +26,7 @@ void addNode(int i, int data, SLList *list) {
 	
 	previous = current;
 	current = current->next;
+	currPos++;
     }
 
     // set the new node's next pointer to the current node
