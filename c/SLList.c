@@ -1,5 +1,7 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "SLList.h"
+
 
 void add(int i, int data, SLList *list) {
     int      currPos = 0;  // our current position in the list
@@ -74,3 +76,18 @@ SLNode* makeNode(int data) {
 
     return newNode;
 }
+
+void printList(SLList *list) {
+
+    SLNode *current = list->head;
+
+    while (current != NULL) {
+	printf("[%d] --> ", current->data);
+
+	current = current->next;
+
+	if (current == NULL)
+	    printf("NULL\n");
+    }
+}
+

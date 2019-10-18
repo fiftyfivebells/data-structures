@@ -25,3 +25,6 @@ void set(int i, int data, SLList *list);
 
 // creates a new node and returns a pointer to it
 SLNode* makeNode(int data);
+
+// prints out a text representation of the linked list
+void printList(SLList *node);
