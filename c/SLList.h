@@ -16,8 +16,8 @@ typedef struct SLList {
 void addHead(int data, SLList *list);
 void addTail(int data, SLList *list);
 
-// removes from the given index in the provided list
-int remove(int i, SLList *list);
+// removes from the given index in the provided list, frees the node, and returns the value
+int removeNode(int i, SLList *list);
 
 // get/set value at given index in the provided list
 int get(int i, SLList *list);
