@@ -3,6 +3,12 @@
 #include "SLList.h"
 
 
+/**
+ * Add methods:
+ * addNode adds a new node at any index in the list
+ * addHead adds a new node at the head of the list
+ * addTail adds a new node at the tail of the list
+ */
 void addNode(int i, int data, SLList *list) {
     int      currPos = 0;  // our current position in the list
     SLNode  *current = list->head;  // current node is the head of the list
@@ -74,6 +80,14 @@ void addTail(int data, SLList *list) {
     // increase the size of the list
     list->size++;
 }
+
+/**
+ * Remove Methods:
+ * removeNode takes the node out of the given index and returns the data
+ * removeHead takes the head off of the list and returns its value
+ * removeTail takes the tail off and returns the value there
+ */
+
 
 // allocates memory for a new SLNode, sets its data, initializes its pointer to
 // NULL, and then returns a pointer to the new node
