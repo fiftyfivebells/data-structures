@@ -17,10 +17,71 @@ void add(int i, int data, SLList *list) {
     SLNode  *current = list->head;  // current node is the head of the list
     SLNode *previous = NULL;
 
+    // if index is 0, add to the head
+    if (i == 0) {
+	addHead(data, list);
+	return;
+    }
+
+    // if index is the last thing in the list, add to the tail
+    if (i == list->size) {
+	addTail(data, list);
+    }
+
+    SLNode *newNode = makeNode(data);
+
     while(current != NULL) {
 	if (currPos == i) break;
-
 	
+	previous = current;
+	current = current->next;
     }
+
+    // set the new node's next pointer to the current node
+    newNode->next = current;
+
+    // then update the previous node's next to point at the new node
+    previous->next = newNode;
+
+    // increase the size of the list
+    list->size++;
 }
 
+void addHead(int data, SLList *list) {
+    SLNode *current = list->head;
+    SLNode *newNode = makeNode(data);
+
+    // set the new node's next pointer to the current head of the list
+    newNode->next = current;
+
+    // set the singly-linked list's head to the new node
+    list->head = newNode;
+
+    // increase the size of the list
+    list->size++;
+}
+
+void addTail(int data, SLList *list) {
+    SLNode *current = list->tail;
+    SLNode *newNode = makeNode(data);
+
+    // set the current tail's next to the new node
+    current->next = newNode;
+
+    // update the list's tail to the new node
+    list->tail = newNode;
+
+    // increase the size of the list
+    list->size++;
+}
+
+// allocates memory for a new SLNode, sets its data, initializes its pointer to
+// NULL, and then returns a pointer to the new node
+SLNode* makeNode(int data) {
+
+    SLNode *newNode = malloc(sizeof(SLNode));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    return newNode;
+}
