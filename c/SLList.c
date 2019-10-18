@@ -3,7 +3,7 @@
 #include "SLList.h"
 
 
-void add(int i, int data, SLList *list) {
+void addNode(int i, int data, SLList *list) {
     int      currPos = 0;  // our current position in the list
     SLNode  *current = list->head;  // current node is the head of the list
     SLNode *previous = NULL;
