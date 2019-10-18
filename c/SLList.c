@@ -48,6 +48,10 @@ void addHead(int data, SLList *list) {
     // set the singly-linked list's head to the new node
     list->head = newNode;
 
+    // make sure the tail gets set if this is the first element
+    if (list->size == 0)
+	list->tail = newNode;
+
     // increase the size of the list
     list->size++;
 }
@@ -61,6 +65,10 @@ void addTail(int data, SLList *list) {
 
     // update the list's tail to the new node
     list->tail = newNode;
+
+    // make sure the head gets set if this is the first element
+    if (list->size == 0)
+	list->head = newNode;
 
     // increase the size of the list
     list->size++;
