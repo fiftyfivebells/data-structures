@@ -230,6 +230,13 @@ int removeTail(SLList *list) {
     return data;
 }
 
+/**
+ * Utility Methods:
+ * makeNode makes a new node for the list
+ * printList prints a visual representation of the list
+ * freeList frees all allocated memory
+ */
+
 // allocates memory for a new SLNode, sets its data, initializes its pointer to
 // NULL, and then returns a pointer to the new node
 SLNode* makeNode(int data) {
@@ -254,4 +261,20 @@ void printList(SLList *list) {
 	    printf("NULL\n");
     }
 }
+
+void freeSLList(SLList *list) {
+    SLNode *current = list->head;
+    SLNode *toFree = NULL;
+
+    // free each node one by one
+    while (current != NULL) {
+	toFree = current;
+	current = current->next;
+	free(toFree);
+    }
+
+    // finally, free the list
+    free(list);
+}
+
 

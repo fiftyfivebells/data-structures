@@ -36,3 +36,6 @@ SLNode* makeNode(int data);
 // prints out a text representation of the linked list
 void printList(SLList *list);
 
+// frees the nodes of the list
+void freeSLList(SLList *list);
+
