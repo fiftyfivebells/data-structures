@@ -13,7 +13,7 @@ typedef struct SELList {
 /* Function Definitions */
 
 // Initialize the list
-SELList * newSELList();
+SELList * newSELList(int blockSize);
 
 // Add methods: adds to front, back, or specified index
 void addToIndex(int i, int data, SELList *list);
