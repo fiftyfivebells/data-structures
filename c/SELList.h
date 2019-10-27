@@ -7,6 +7,7 @@ typedef struct SELLNode {
 
 typedef struct SELList {
     int size;
+    int blockSize;
     Node *dummy;
 } SELList;
 
