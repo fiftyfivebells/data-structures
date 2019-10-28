@@ -1,6 +1,6 @@
 /* Type Definitions */
 typedef struct SELLNode {
-    int **dataList;  // pointer to a list of int values
+    int *dataList;  // pointer to a list of int values
     struct SELLNode *prev;
     struct SELLNode *next;
 } Node;
