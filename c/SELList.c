@@ -37,3 +37,19 @@ void addHead(int data, SELList *list) {
 
 }
 
+/**
+ * List Utility Methods:
+ * printList
+ */
+void printList(SELList *list) {
+    Node *head = list->dummy;
+
+    printf("[");
+    while (head->next != NULL) {
+	printDataList(head->next->dataList);
+    	printf("] --> ");
+	head = head->next;
+    }
+    printf("\n");
+}
+
