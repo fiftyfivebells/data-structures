@@ -34,3 +34,8 @@ int removeTail(SELList *list);
 // Get/Set methods
 int getIndex(int i, SELList *list);
 int setIndex(int i, int data, SELList *list);
+
+// List utility methods
+void printList(SELList *list);
+void printDataList(int** dataList);
+
