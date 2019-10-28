@@ -20,3 +20,20 @@ SELList * newSELList(int blockSize) {
     return list;
 }
 
+/**
+ * Add functions
+ */
+void addHead(int data, SELList *list) {
+
+    // if there are no nodes in the list, add one
+    if (list->dummy->next == NULL) {
+	list->dummy->next = malloc(sizeof(Node));
+	list->dummy->next->dataList = malloc(sizeof(int) * list->blockSize);
+    }
+
+    Node *head = list->dummy->next;
+
+    head->dataList[0] = &data;
+
+}
+
