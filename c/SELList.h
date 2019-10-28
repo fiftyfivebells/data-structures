@@ -11,6 +11,11 @@ typedef struct SELList {
     Node *dummy;
 } SELList;
 
+typedef struct Location {
+    Node *node;
+    int index;
+} Location;
+
 /* Function Definitions */
 
 // Initialize the list
