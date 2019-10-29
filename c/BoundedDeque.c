@@ -147,4 +147,31 @@ int removeFromIndex(int i, BDeque *d) {
     return x;
 }
 
+int getIndex(int i, BDeque *d) {
+    if (i < 0 || i > d->size-1) {
+	printf("Index %d is out of bounds.\n", i);
+	return -1;
+    }
+
+    if (d->size == 0) {
+	printf("Nothing to get from this list.\n");
+	return -1;
+    }
+
+    return d->dataList[(d->front+i)%d->maxSize];
+}
+
+void setIndex(int i, int data, BDeque *d) {
+    if (i < 0 || i > d->size-1) {
+	printf("Index %d is out of bounds.\n", i);
+	return;
+    }
+
+    if (d->size == 0) {
+	printf("Nothing to get from this list.\n");
+	return;
+    }
+
+    d->dataList[(d->front+i)%d->maxSize] = data;
+}
 
