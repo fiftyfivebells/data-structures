@@ -175,6 +175,18 @@ void setIndex(int i, int data, BDeque *d) {
     d->dataList[(d->front+i)%d->maxSize] = data;
 }
 
+void printDeque(BDeque *d) {
+    printf("[");
+
+    for (int i = 0; i < d->size; i++) {
+	if (i == d->size - 1)
+	    printf("%d", d->dataList[(d->front+i)%d->maxSize]);
+	else
+	    printf("%d, ", d->dataList[(d->front+i)%d->maxSize]);
+    }
+    printf("]\n");
+}
+
 void freeDeque(BDeque *d) {
     free(d->dataList);
     free(d);
