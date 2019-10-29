@@ -106,3 +106,45 @@ int removeFromBack(BDeque *d) {
     int x = d->dataList[d->front+d->size-1];
 }
 
+int removeFromIndex(int i, BDeque *d) {
+    if (i < 0 || i > d->size-1) {
+	printf("Index %d is out of bounds.\n", i);
+	return -1;
+    }
+
+    if (d->size == 0) {
+	printf("Nothing to remove from this list.\n");
+	return -1;
+    }
+
+    if (i == 0)
+	return removeFromFront(d);
+
+    if (i == d->size-1)
+	return removeFromBack(d);
+
+    int index = (d->front + i) % d->maxSize;
+    int x = d->dataList[index];
+
+    // if in the first half of the list, start at the index we removed from and
+    // pull each item from before it one by one, until we've hit the front
+    if (i <= d->size / 2) {
+	for (int j = 0; j < i; j++) {
+	    d->dataList[index-j] = d->dataList[index-j-1];
+	}
+	d->front = (d->front+1) % d->maxSize;
+    }
+
+    // if in the back half of the list, start at the index and move each thing
+    // after it over by one until we hit the back of the list
+    else {
+	for (int j = 0; j < i; j++) {
+	    d->dataList[index+j] = d->dataList[index+j+1];
+	}
+    }
+
+    d->size--;
+    return x;
+}
+
+
