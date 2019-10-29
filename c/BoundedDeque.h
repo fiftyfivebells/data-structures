@@ -27,5 +27,5 @@ void setIndex(int i, int data, BDeque *d);
 
 // Utility Methods
 void printDeque(BDeque *d);
-void freeDeque(Bdeque *d);
+void freeDeque(BDeque *d);
 
