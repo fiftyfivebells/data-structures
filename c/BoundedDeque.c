@@ -175,3 +175,8 @@ void setIndex(int i, int data, BDeque *d) {
     d->dataList[(d->front+i)%d->maxSize] = data;
 }
 
+void freeDeque(BDeque *d) {
+    free(d->dataList);
+    free(d);
+}
+
