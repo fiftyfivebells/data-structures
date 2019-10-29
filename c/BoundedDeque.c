@@ -75,3 +75,34 @@ void addToBack(int data, BDeque *d) {
     addToIndex(d->size, data, d);
 }
 
+/**
+ * Takes the item from the head of the list and updates the list
+ */
+int removeFromFront(BDeque *d) {
+    if (d->size == 0) {
+	printf("Nothing to remove from this list.\n");
+	return -1;
+    }
+
+    // get the item we're removing from the list
+    int x = d->dataList[d->front];
+
+    // update the front pointer to the next in line
+    d->front = (d->front+1) % d->maxSize;
+    d->size--;
+    return x;
+}
+
+/**
+ * Takes the item from the back of the list and updates the list
+ */
+int removeFromBack(BDeque *d) {
+    if (d->size == 0) {
+	printf("Nothing to remove from this list.\n");
+	return -1;
+    }
+
+    d->size--;
+    int x = d->dataList[d->front+d->size-1];
+}
+
