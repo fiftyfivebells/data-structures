@@ -44,4 +44,5 @@ Node * makeNewNode(int blockSize);
 Location * getLocation(int i, SELList *list);
 void printList(SELList *list);
 void printDataList(int** dataList);
+void freeSELList(SELList *list);
 

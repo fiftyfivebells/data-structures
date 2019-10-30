@@ -140,3 +140,18 @@ void printList(SELList *list) {
     printf("]\n");
 }
 
+void freeSELList(SELList *list) {
+    Node *current = list->dummy->next;
+    Node *delete;
+
+    while (current != list->dummy) {
+	delete = current;
+	current = current->next;
+	freeDeque(delete->deque);
+	free(delete);
+    }
+
+    free(current);
+    free(list);
+}
+
