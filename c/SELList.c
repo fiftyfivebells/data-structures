@@ -28,12 +28,12 @@ void addHead(int data, SELList *list) {
     // if there are no nodes in the list, add one
     if (list->dummy->next == NULL) {
 	list->dummy->next = malloc(sizeof(Node));
-	list->dummy->next->dataList = malloc(sizeof(int) * list->blockSize);
+	list->dummy->next->deque = newBoundedDeque(list->blockSize);
     }
 
     Node *head = list->dummy->next;
 
-    head->dataList[0] = &data;
+    addToFront(data, head->deque);
 
 }
 
@@ -49,6 +49,6 @@ void printList(SELList *list) {
 	printDeque(head->next->deque);
 	head = head->next;
     }
-    printf("\n");
+    printf("]\n");
 }
 
