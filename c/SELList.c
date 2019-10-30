@@ -35,14 +35,10 @@ void addHead(int data, SELList *list) {
     Node *head = list->dummy->next;
 
     addToFront(data, head->deque);
-
 }
 
 void addTail(int data, SELList *list) {
 
-    // if there are no nodes in the list, add one
-    if (list->dummy->next == NULL && list->dummy->prev == NULL)  {
-	Node *newNode = makeNewNode(list->blockSize);
     Node *last = list->dummy->prev;
 
     if (last == NULL) {
