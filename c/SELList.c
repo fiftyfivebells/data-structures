@@ -78,12 +78,13 @@ void spread(Node *node, int blockSize) {
 Node * addBeforeNode(Node *node, int blockSize) {
     Node *newNode = makeNewNode(blockSize);
 
+    // set the newNode's next and prev pointers
     newNode->prev = node->prev;
     newNode->next = node;
 
-    newNode->next->prev = newNode;
-    newNode->prev->next = newNode;
-    
+    node->prev->next = newNode;
+    node->prev = newNode;
+
     return newNode;
 }
 
