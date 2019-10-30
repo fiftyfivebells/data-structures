@@ -68,17 +68,34 @@ Node * makeNewNode(int blockSize) {
 }
 
 Location * getLocation(int i, SELList *list) {
-    Node *current = list->dummy->next;
+    Node *current;
     Location *l = malloc(sizeof(Location));
 
-    while(current != NULL && i > current->deque->size) {
-	i -= current->deque->size;
-	current = current->next;
+    // if in front half of list, start at the front and work in
+    if (i <= list->size/2) {
+	current = list->dummy->next;
+	while(i > current->deque->size) {
+	    i -= current->deque->size;
+	    current = current->next;
+	}
+
+	l->node = current;
+	l->index = i;
     }
 
-    l->node = current;
-    l->index = i;
+    // otherwise, start at the back and work back
+    else {
+	current = list->dummy;
+	int index = list->size;
 
+	while (index > i) {
+	    index -= current->deque->size;
+	    current = current->prev;
+	}
+	l->node = current;
+	l->index = i - index;
+    }
+    
     return l;
 }
 
