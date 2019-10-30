@@ -119,8 +119,10 @@ void printList(SELList *list) {
     Node *head = list->dummy;
 
     printf("[");
-    while (head->next != NULL) {
+    while (head->next != list->dummy) {
 	printDeque(head->next->deque);
+	if (head->next->next != list->dummy)
+	    printf(" -> ");
 	head = head->next;
     }
     printf("]\n");
