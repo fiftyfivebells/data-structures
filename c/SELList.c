@@ -46,8 +46,7 @@ void printList(SELList *list) {
 
     printf("[");
     while (head->next != NULL) {
-	printDataList(head->next->dataList);
-    	printf("] --> ");
+	printDeque(head->next->deque);
 	head = head->next;
     }
     printf("\n");
