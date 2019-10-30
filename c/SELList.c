@@ -26,15 +26,31 @@ SELList * newSELList(int blockSize) {
 void addHead(int data, SELList *list) {
 
     // if there are no nodes in the list, add one
-    if (list->dummy->next == NULL) {
-	list->dummy->next = malloc(sizeof(Node));
-	list->dummy->next->deque = newBoundedDeque(list->blockSize);
+    if (list->dummy->next == NULL && list->dummy->prev == NULL)  {
+	Node *newNode = makeNewNode(list->blockSize+1);
+	list->dummy->next = newNode;
+	list->dummy->prev = newNode;
     }
 
     Node *head = list->dummy->next;
 
     addToFront(data, head->deque);
 
+}
+
+void addTail(int data, SELList *list) {
+
+    // if there are no nodes in the list, add one
+    if (list->dummy->next == NULL && list->dummy->prev == NULL)  {
+	Node *newNode = makeNewNode(list->blockSize+1);
+	list->dummy->next = newNode;
+	list->dummy->prev = newNode;
+    }
+    
+    Node *tail = list->dummy->prev;
+
+    addToBack(data, tail->deque);
+    
 }
 
 /**
