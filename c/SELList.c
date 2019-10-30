@@ -14,8 +14,6 @@ SELList * newSELList(int blockSize) {
     list->blockSize = blockSize;
 
     // set the dummy's prev and next to null
-    list->dummy->prev = NULL;
-    list->dummy->next = NULL;
     list->dummy->prev = list->dummy;
     list->dummy->next = list->dummy;
 
