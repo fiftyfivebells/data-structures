@@ -41,7 +41,7 @@ void addToIndex(int i, int data, BDeque *d) {
 	    // the actual index in the list
 	    int index = (d->front + i) % d->maxSize;
 
-	    for (int j = 0; j < i; i++) {
+	    for (int j = 0; j < i; j++) {
 		// starts at the new front, moves everything over one until it gets to the new index
 		d->dataList[(d->front+i)%d->maxSize] = d->dataList[(d->front+i+1)%d->maxSize];
 	    }
