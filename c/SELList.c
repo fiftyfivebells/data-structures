@@ -41,25 +41,12 @@ void addTail(int data, SELList *list) {
 
     Node *last = list->dummy->prev;
 
-    if (last == NULL) {
-	Node *newNode = makeNewNode(list->blockSize+1);
-	list->dummy->next = newNode;
-	list->dummy->prev = newNode;
-
-	newNode->next = list->dummy; 
-	newNode->prev = list->dummy;
-	last = newNode;
+    // if the last node in the list is the dummy or it's full, make a new node
+    if (last == list->dummy || last->deque->size == list->blockSize+1) {
+	last = addBeforeNode(list->dummy, list->blockSize);
     }
-   
-    if (last->deque->size == list->blockSize + 1) {
-	Node *newNode = makeNewNode(list->blockSize+1);
-	last->next = newNode;
-	list->dummy->prev = newNode;
 
-	newNode->next = list->dummy;
-	last = newNode;
-    }
-    
+    // and now add to the back of the last node in the list
     addToBack(data, last->deque);
     list->size++;
 }
