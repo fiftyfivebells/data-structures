@@ -184,7 +184,7 @@ void printDeque(BDeque *d) {
 	else
 	    printf("%d, ", d->dataList[(d->front+i)%d->maxSize]);
     }
-    printf("]\n");
+    printf("]");
 }
 
 void freeDeque(BDeque *d) {
