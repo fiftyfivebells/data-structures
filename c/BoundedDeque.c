@@ -102,8 +102,10 @@ int removeFromBack(BDeque *d) {
 	return -1;
     }
 
+
+    int x = d->dataList[((d->front)+(d->size-1))%d->maxSize];
     d->size--;
-    int x = d->dataList[d->front+d->size-1];
+    return x;
 }
 
 int removeFromIndex(int i, BDeque *d) {
