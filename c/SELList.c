@@ -41,21 +41,9 @@ void addHead(int data, SELList *list) {
  * List Utility Methods:
  * printList
  */
-Node * addNewNodeToList(Node *prev, Node *next, int blockSize) {
-
+Node * makeNewNode(int blockSize) {
     Node *toAdd = malloc(sizeof(Node));
     toAdd->deque = newBoundedDeque(blockSize);
-
-    // set the new node's next and prev pointers to the two provided nodes
-    toAdd->next = next;
-    toAdd->prev = prev;
-
-    // if the prev and next node's aren't null, set their pointers
-    if (prev != NULL)
-	prev->next = toAdd;
-
-    if (next != NULL)
-	next->prev = toAdd;
 
     return toAdd;
 }
