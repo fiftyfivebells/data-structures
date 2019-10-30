@@ -72,6 +72,18 @@ void SELLaddToIndex(int i, int data, SELList *list) {
  * List Utility Methods:
  * printList
  */
+Node * addBeforeNode(Node *node, int blockSize) {
+    Node *newNode = makeNewNode(blockSize);
+
+    newNode->prev = node->prev;
+    newNode->next = node;
+
+    newNode->next->prev = newNode;
+    newNode->prev->next = newNode;
+    
+    return newNode;
+}
+
 Node * makeNewNode(int blockSize) {
     Node *toAdd = malloc(sizeof(Node));
     toAdd->deque = newBoundedDeque(blockSize);
