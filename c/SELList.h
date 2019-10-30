@@ -38,6 +38,7 @@ int getIndexSELL(int i, SELList *list);
 int setIndexSELL(int i, int data, SELList *list);
 
 // List utility methods
+Node * addNewNodeToList(Node *prev, Node *next, int blockSize);
 void printList(SELList *list);
 void printDataList(int** dataList);
 
