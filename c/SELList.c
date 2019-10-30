@@ -50,6 +50,9 @@ void addTail(int data, SELList *list) {
     Node *tail = list->dummy->prev;
 
     addToBack(data, tail->deque);
+}
+
+void SELLaddToIndex(int i, int data, SELList *list) {
     
 }
 
@@ -62,6 +65,21 @@ Node * makeNewNode(int blockSize) {
     toAdd->deque = newBoundedDeque(blockSize);
 
     return toAdd;
+}
+
+Location * getLocation(int i, SELList *list) {
+    Node *current = list->dummy->next;
+    Location *l = malloc(sizeof(Location));
+
+    while(current != NULL && i > current->deque->size) {
+	i -= current->deque->size;
+	current = current->next;
+    }
+
+    l->node = current;
+    l->index = i;
+
+    return l;
 }
 
 void printList(SELList *list) {
