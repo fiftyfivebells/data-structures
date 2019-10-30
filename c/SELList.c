@@ -72,6 +72,22 @@ void SELLaddToIndex(int i, int data, SELList *list) {
  * List Utility Methods:
  * printList
  */
+void spread(Node *node, int blockSize) {
+    Node *current = node;
+
+    for (int i = 0; i < blockSize; i++) {
+	current = current->next;
+    }
+    current = addBeforeNode(current, blockSize);
+
+    while (current != node) {
+	while (current->deque->size < blockSize) {
+	    addToFront(removeFromBack(current->prev->deque), current->deque);
+	}
+	current = current->prev;
+    }
+}
+
 Node * addBeforeNode(Node *node, int blockSize) {
     Node *newNode = makeNewNode(blockSize);
 
