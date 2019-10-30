@@ -43,13 +43,29 @@ void addTail(int data, SELList *list) {
     // if there are no nodes in the list, add one
     if (list->dummy->next == NULL && list->dummy->prev == NULL)  {
 	Node *newNode = makeNewNode(list->blockSize);
+    Node *last = list->dummy->prev;
+
+    if (last == NULL) {
+	Node *newNode = makeNewNode(list->blockSize+1);
 	list->dummy->next = newNode;
 	list->dummy->prev = newNode;
+
+	newNode->next = list->dummy; 
+	newNode->prev = list->dummy;
+	last = newNode;
+    }
+   
+    if (last->deque->size == list->blockSize + 1) {
+	Node *newNode = makeNewNode(list->blockSize+1);
+	last->next = newNode;
+	list->dummy->prev = newNode;
+
+	newNode->next = list->dummy;
+	last = newNode;
     }
     
-    Node *tail = list->dummy->prev;
-
-    addToBack(data, tail->deque);
+    addToBack(data, last->deque);
+    list->size++;
 }
 
 void SELLaddToIndex(int i, int data, SELList *list) {
