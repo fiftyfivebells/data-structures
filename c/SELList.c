@@ -52,7 +52,55 @@ void addTail(int data, SELList *list) {
 }
 
 void SELLaddToIndex(int i, int data, SELList *list) {
-    
+ 
+   if (i < 0 || i > list->size) {
+	printf("Index %d is out of bounds.\n", i);
+	return;
+    }
+
+   // gets the node and index in that node where we're going to add the new data
+   Location *l = getLocation(i, list);
+   Node *toAdd = l->node;
+   int index = l->index;
+
+   // number of blocks we've moved over from the block we found above
+   int block = 0;
+
+   // walk through the list until we find a node with space, run off the end, or get
+   // blockSize blocks in without finding space
+   while (block < list->blockSize && toAdd != list->dummy && toAdd->deque->size == list->blockSize+1) {
+       toAdd = toAdd->next;
+       ++block;
+   }
+
+   // if we move over blockSize times, we need to add a new node and spread the data
+   // around so that everything is back to size blockSize
+   if (block == list->blockSize) {
+       spread(l->node, list->blockSize);
+       toAdd = l->node;
+   }
+
+   // if we're at the dummy, we ran off the end of the list, so add a new node there
+   // and move things to make some room
+   if (toAdd == list->dummy) {
+       // add new node right before toAdd
+       toAdd = addBeforeNode(toAdd, list->blockSize);
+   }
+
+   // if we're not already at the node we want to add to, move things into the current
+   // node and then step back in the list, moving things until we get back to the node
+   // we want, which should now have space to add
+   while (toAdd != l->node) {
+       addToFront(removeFromBack(toAdd->prev->deque), toAdd->deque);
+       toAdd = toAdd->prev;
+   }
+
+   // now add to the node we wanted at the index we wanted and increment the size
+   addToIndex(index, data, toAdd->deque);
+   list->size++;
+   
+   // free the location and it's node now that we have what we need
+   free(l);
 }
 
 /**
