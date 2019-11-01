@@ -63,7 +63,7 @@ void SELLaddToIndex(int i, int data, SELList *list) {
  
    if (i < 0 || i > list->size) {
 	printf("Index %d is out of bounds.\n", i);
-	return;
+	exit(-1);
     }
 
    // gets the node and index in that node where we're going to add the new data
@@ -121,7 +121,7 @@ void SELLaddToIndex(int i, int data, SELList *list) {
 int SELLremoveFromIndex(int i, SELList *list) {
     if (i < 0 || i > list->size-1) {
 	printf("Index %d is out of bounds.\n", i);
-	return -1;	
+	exit(-1);
     }
 
     Location *l = getLocation(i, list);
