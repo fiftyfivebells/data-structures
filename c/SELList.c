@@ -103,6 +103,76 @@ void SELLaddToIndex(int i, int data, SELList *list) {
    free(l);
 }
 
+
+/**
+ * Takes an index and the SELList, then removes the data from the given index.
+ * Returns the data that was removed, and also closes up the gap left by the
+ * remove. If a block drops below blockSize-1, it gathers up excess items from
+ * other blocks and removes the now-empty node.
+ */
+int SELLremoveFromIndex(int i, SELList *list) {
+    if (i < 0 || i > list->size-1) {
+	printf("Index %d is out of bounds.\n", i);
+	return -1;	
+    }
+
+    Location *l = getLocation(i, list);
+
+    // get the item we'll eventually return from the function
+    int x = getIndex(l->index, l->node->deque);
+
+    // set current to the node where we found the data to remove
+    Node *current = l->node;
+    int block = 0;
+
+    // walk through the list until we hit the dummy, find a node 
+    // with more than blockSize-1 items, or we've seen blockSize nodes
+    while (block < list->blockSize && current != list->dummy && current->deque->size == list->blockSize-1) {
+	current = current->next;
+	block++;
+    }
+
+    if (block == list->blockSize) {
+	gather(l->node, list->blockSize);
+    }
+
+    current = l->node;
+
+    // now actually remove the item from the list
+    removeFromIndex(l->index, current->deque);
+
+    // then, while the current node's block size is less than blockSize-1,
+    // we pull from the next node, balancing as we go
+    while (current->deque->size < list->blockSize-1 && current->next != list->dummy) {
+	addToBack(removeFromFront(current->next->deque), current->deque);
+	current = current->next;
+    }
+
+    // if there's nothing left in the current block, remove the node
+    if (current->deque->size == 0) {
+	current->prev->next = current->next;
+	current->next->prev = current->prev;
+
+	freeDeque(current->deque);
+	free(current);
+    }
+    
+    // free up the location now that we're done
+    free(l);
+
+    list->size--;
+    return x;
+}
+
+int getIndexSELL(int i, SELList *list) {
+    Location *l = getLocation(i, list);
+    int x = getIndex(l->index, l->node->deque); 
+
+    free(l);
+
+    return x;
+}
+
 /**
  * List Utility Methods:
  * printList
