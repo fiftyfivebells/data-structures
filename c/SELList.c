@@ -123,6 +123,20 @@ void spread(Node *node, int blockSize) {
     }
 }
 
+void gather(Node *node, int blockSize) {
+    Node *current = node;
+
+    for (int i = 0; i < blockSize-1; i++) {
+	while (current->deque->size < blockSize)
+	    addToBack(removeFromFront(current->next->deque), current->deque);
+	current = current->next;
+    }
+
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
+    free(current);
+}
+
 Node * addBeforeNode(Node *node, int blockSize) {
     Node *newNode = makeNewNode(blockSize);
 
