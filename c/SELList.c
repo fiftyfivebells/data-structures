@@ -164,7 +164,7 @@ Location * getLocation(int i, SELList *list) {
     // if in front half of list, start at the front and work in
     if (i <= list->size/2) {
 	current = list->dummy->next;
-	while(i > current->deque->size) {
+	while(i >= current->deque->size) {
 	    i -= current->deque->size;
 	    current = current->next;
 	}
