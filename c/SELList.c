@@ -179,8 +179,8 @@ Location * getLocation(int i, SELList *list) {
 	int index = list->size;
 
 	while (index > i) {
-	    index -= current->deque->size;
 	    current = current->prev;
+	    index -= current->deque->size;
 	}
 	l->node = current;
 	l->index = i - index;
