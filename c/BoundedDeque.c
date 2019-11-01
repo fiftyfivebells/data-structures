@@ -127,14 +127,13 @@ int removeFromIndex(int i, BDeque *d) {
     if (i == d->size-1)
 	return removeFromBack(d);
 
-    int index = (d->front + i) % d->maxSize;
-    int x = d->dataList[index];
+    int x = d->dataList[(d->front + i) % d->maxSize];
 
     // if in the first half of the list, start at the index we removed from and
     // pull each item from before it one by one, until we've hit the front
     if (i <= d->size / 2) {
-	for (int j = 0; j < i; j++) {
-	    d->dataList[index-j] = d->dataList[index-j-1];
+	for (int j = i; j > 0; j--) {
+	    d->dataList[(d->front+j)%d->maxSize] = d->dataList[(d->front+j-1)%d->maxSize];
 	}
 	d->front = (d->front+1) % d->maxSize;
     }
@@ -142,8 +141,8 @@ int removeFromIndex(int i, BDeque *d) {
     // if in the back half of the list, start at the index and move each thing
     // after it over by one until we hit the back of the list
     else {
-	for (int j = 0; j < i; j++) {
-	    d->dataList[index+j] = d->dataList[index+j+1];
+	for (int j = i; j < d->size-1; j++) {
+	    d->dataList[(d->front+j)%d->maxSize] = d->dataList[(d->front+j+1)%d->maxSize];
 	}
     }
 
