@@ -51,6 +51,14 @@ void addTail(int data, SELList *list) {
     list->size++;
 }
 
+/**
+ * Adds the given data to the given list at the given index. If there's no space in
+ * the node and index we're looking for, it walks through the list looking for space.
+ * If it takes blockSize steps into the list and finds no space, it needs to add a
+ * new node, then spread the max capacity nodes out so that it fills the new node to
+ * just blockSize, which leaves all the other nodes at blockSize as well. It then
+ * adds to the list.
+ */
 void SELLaddToIndex(int i, int data, SELList *list) {
  
    if (i < 0 || i > list->size) {
@@ -132,10 +140,13 @@ int SELLremoveFromIndex(int i, SELList *list) {
 	block++;
     }
 
+    // if we've gone blockSize steps into the list, we've got too much space
+    // and need to gather some elements to get rid of a node
     if (block == list->blockSize) {
 	gather(l->node, list->blockSize);
     }
 
+    // set the current node back to the node we want to remove from
     current = l->node;
 
     // now actually remove the item from the list
@@ -153,6 +164,7 @@ int SELLremoveFromIndex(int i, SELList *list) {
 	current->prev->next = current->next;
 	current->next->prev = current->prev;
 
+	// don't forget to free the deque and the node when we remove
 	freeDeque(current->deque);
 	free(current);
     }
@@ -164,10 +176,15 @@ int SELLremoveFromIndex(int i, SELList *list) {
     return x;
 }
 
+/**
+ * Standard get function. Takes in the index and the list, then gets
+ * and returns the item at that index inside the list.
+ */ 
 int getIndexSELL(int i, SELList *list) {
     Location *l = getLocation(i, list);
     int x = getIndex(l->index, l->node->deque); 
 
+    // remember to free the allocated memory for the location
     free(l);
 
     return x;
