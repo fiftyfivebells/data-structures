@@ -51,6 +51,20 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
+     * Getter
+     * Takes an integer representing an index in the list and
+     * returns the item at that index. Does not remove the item
+     * from the list.
+     * @param i The index of the item from the list
+     * @return x The value at the given index
+     */
+    public T get(int i) {
+        if (i < 0 || i > size) throw new IndexOutOfBoundsException;
+
+        return array[i];
+    }
+
+    /**
      * Resizes the internal array when the number of items being stored
      * is either equal to the length of the array, or when the number
      * of items stored is 1/3 the length of the array.
