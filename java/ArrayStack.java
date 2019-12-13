@@ -45,7 +45,6 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
-     * Getter
      * Takes an integer representing an index in the list and
      * returns the item at that index. Does not remove the item
      * from the list.
