@@ -28,11 +28,6 @@ public class MyArrayList<T> extends AbstractList<T> {
     int size;
 
     /**
-     * The pointer to the front of the list
-     */
-    int front;
-
-    /**
      * Constructor
      * @param t is the class of the type of object stored in the list
      */
@@ -40,7 +35,6 @@ public class MyArrayList<T> extends AbstractList<T> {
         factory = new Factory(t);
         array = factory.newArray(1);  // makes new array of size 1
         size = 0;
-        front = 0;
     }
 
     /**
@@ -59,7 +53,6 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @return x The value at the given index
      */
     public T get(int i) {
-        if (i < 0 || i > size) throw new IndexOutOfBoundsException;
         if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException;
 
         return array[i];
