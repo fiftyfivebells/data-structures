@@ -32,4 +32,18 @@ public class MyArrayList<T> extends AbstractList<T> {
         array = factory.newArray(1);  // makes new array of size 1
         size = 0;
     }
+
+    /**
+     * Resizes the internal array when the number of items being stored
+     * is either equal to the length of the array, or when the number
+     * of items stored is 1/3 the length of the array.
+     */
+    private void resize() {
+        // take max of 1 and size*2 to account for when size is 0
+        T[] newArray = factory.newArray(Math.max(size*2, 1));
+        for (int i = 0; i < size*2; i++) {
+            newArray[i] = array[i];
+        }
+        array = newArray;
+    }
 }
