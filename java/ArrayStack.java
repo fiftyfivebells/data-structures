@@ -28,6 +28,11 @@ public class MyArrayList<T> extends AbstractList<T> {
     int size;
 
     /**
+     * The pointer to the front of the list
+     */
+    int front;
+
+    /**
      * Constructor
      * @param t is the class of the type of object stored in the list
      */
