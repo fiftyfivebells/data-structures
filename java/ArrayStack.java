@@ -60,6 +60,7 @@ public class MyArrayList<T> extends AbstractList<T> {
      */
     public T get(int i) {
         if (i < 0 || i > size) throw new IndexOutOfBoundsException;
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException;
 
         return array[i];
     }
