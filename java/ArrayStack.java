@@ -27,6 +27,10 @@ public class MyArrayList<T> extends AbstractList<T> {
      */
     int size;
 
+    /**
+     * Constructor
+     * @param t is the class of the type of object stored in the list
+     */
     public MyArrayList(Class<T> t) {
         factory = new Factory(t);
         array = factory.newArray(1);  // makes new array of size 1
