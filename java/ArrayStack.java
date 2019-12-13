@@ -1,0 +1,35 @@
+package data_structures;
+
+import java.util.AbstractList;
+import java.util.Collection;
+
+/**
+ * This is my implementation of Java's ArrayList class. I've implemented
+ * this with an array, with elements stored at array[0],...,array[size - 1].
+ * The array doubles in size when it hits capacity, and it halves in size
+ * when it hits a third of capacity.
+ */
+public class MyArrayList<T> extends AbstractList<T> {
+    
+    /**
+     * Keeps track of the class of objects stored, and
+     * allows creation of generic arrays
+     */
+    Factory<T> factory;
+
+    /**
+     * The array that stores the elements
+     */
+    T[] array;
+
+    /**
+     * The number of elements stored in the array
+     */
+    int size;
+
+    public MyArrayList(Class<T> t) {
+        factory = new Factory(t);
+        array = factory.newArray(1);  // makes new array of size 1
+        size = 0;
+    }
+}
