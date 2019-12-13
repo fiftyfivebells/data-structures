@@ -58,6 +58,24 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
+     * Takes an object of type T and adds it to the array. If the array is
+     * at capacity, it resizes, then adds.
+     * @param i the index to put the new item
+     * @param x the object to be added
+     */
+    public void add(int i, T x) {
+        if (i < 0 || i > size) throw new IndexOutOfBoundsException;
+
+        if (size == array.length) resize();
+
+        for (int j = size; j > i; j--) {
+            array[j] = array[j-1];
+        }
+        array[i] = x;
+        size++;
+    }
+    
+    /**
      * Resizes the internal array when the number of items being stored
      * is either equal to the length of the array, or when the number
      * of items stored is 1/3 the length of the array.
