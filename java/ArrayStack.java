@@ -44,6 +44,13 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
+     * Returns the number of items currently in the array
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
      * Resizes the internal array when the number of items being stored
      * is either equal to the length of the array, or when the number
      * of items stored is 1/3 the length of the array.
