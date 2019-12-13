@@ -40,6 +40,7 @@ public class MyArrayList<T> extends AbstractList<T> {
         factory = new Factory(t);
         array = factory.newArray(1);  // makes new array of size 1
         size = 0;
+        front = 0;
     }
 
     /**
