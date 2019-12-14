@@ -20,4 +20,12 @@ public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
     public void push(T x) {
         this.add(0, x);
     }
+
+    /**
+     * Pops the first element off the stack and returns it
+     * @return x the top element of the stack
+     */
+    public T pop() {
+        return this.remove(0);
+    }
 }
