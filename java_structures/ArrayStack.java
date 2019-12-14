@@ -2,6 +2,12 @@ package java_structures;
 
 import java.util.Stack;
 
+/**
+ * This is an implementation of a stack using my own version of the ArrayList
+ * as a parent. It provides push/pop/peek/empty, the primary stack operations.
+ * This isn't a perfect solution, since my list is not an interface or abstract
+ * class, so this class has access to the parent's public methods.
+ */
 public class ArrayStack<T> extends MyArrayList<T> {
 
     /**
