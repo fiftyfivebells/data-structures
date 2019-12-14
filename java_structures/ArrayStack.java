@@ -2,7 +2,7 @@ package java_structures;
 
 import java.util.Stack;
 
-public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
+public class ArrayStack<T> extends MyArrayList<T> {
 
     /**
      * Constructor
@@ -44,5 +44,4 @@ public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
     public boolean empty() {
         return this.size == 0;
     }
-
 }
