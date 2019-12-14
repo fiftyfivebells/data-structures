@@ -1,6 +1,8 @@
 package java_structures;
 
-public class ArrayStack extends MyArrayStack<T> {
+import java.util.Stack;
+
+public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
 
     /**
      * Constructor
@@ -11,5 +13,11 @@ public class ArrayStack extends MyArrayStack<T> {
         super(t);
     }
 
-    
+    /**
+     * Pushes the provided object onto the front of the stack
+     * @param x the object to be added to the stack
+     */
+    public void push(T x) {
+        this.add(0, x);
+    }
 }
