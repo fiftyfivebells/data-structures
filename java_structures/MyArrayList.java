@@ -121,7 +121,7 @@ public class MyArrayList<T> extends AbstractList<T> {
     private void resize() {
         // take max of 1 and size*2 to account for when size is 0
         T[] newArray = factory.newArray(Math.max(size*2, 1));
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < size; i++) {
             newArray[i] = array[i];
         }
         array = newArray;
