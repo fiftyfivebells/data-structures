@@ -74,8 +74,8 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
-     * Takes an object of type T and adds it to the array. If the array is
-     * at capacity, it resizes, then adds.
+     * Takes an object of type T and adds it to the array at index i.
+     * If the array is at capacity, it resizes, then adds.
      * @param i the index to put the new item
      * @param x the object to be added
      */
