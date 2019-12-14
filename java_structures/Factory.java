@@ -1,4 +1,4 @@
-package data_structures;
+package java_structures;
 
 import java.lang.reflect.Array;
 

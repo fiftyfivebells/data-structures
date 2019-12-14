@@ -1,4 +1,4 @@
-package data_structures;
+package java_structures;
 
 import java.util.AbstractList;
 import java.util.Collection;
@@ -15,17 +15,17 @@ public class MyArrayList<T> extends AbstractList<T> {
      * Keeps track of the class of objects stored, and
      * allows creation of generic arrays
      */
-    Factory<T> factory;
+    protected Factory<T> factory;
 
     /**
      * The array that stores the elements
      */
-    T[] array;
+    protected T[] array;
 
     /**
      * The number of elements stored in the array
      */
-    int size;
+    protected int size;
 
     /**
      * Constructor
@@ -52,7 +52,7 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @return x The value at the given index
      */
     public T get(int i) {
-        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException;
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
 
         return array[i];
     }
@@ -66,7 +66,7 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @return the item in the index before being set
      */
     public T set(int i, T x) {
-        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException;
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
 
         T y = array[i];
         array[i] = x;
@@ -80,7 +80,7 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @param x the object to be added
      */
     public void add(int i, T x) {
-        if (i < 0 || i > size) throw new IndexOutOfBoundsException;
+        if (i < 0 || i > size) throw new IndexOutOfBoundsException();
 
         if (size == array.length) resize();
 
@@ -91,6 +91,28 @@ public class MyArrayList<T> extends AbstractList<T> {
         size++;
     }
     
+    /**
+     * Removes and returns the object at index i in the array. If the
+     * array is equal or greater than 3 times size after the remove, it
+     * resizes the backing array.
+     * @param i index to remove from
+     * @return x the item removed from the array
+     */
+    public T remove(int i) {
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
+
+        T x = array[i];
+
+        for (int j = i; j < size - 1; j++) {
+            array[j] = array[j+1];
+        }
+
+        size--;
+        if (size*3 <= array.length) resize();
+
+        return x;
+    }
+
     /**
      * Resizes the internal array when the number of items being stored
      * is either equal to the length of the array, or when the number
