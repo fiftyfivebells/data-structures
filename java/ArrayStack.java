@@ -58,6 +58,22 @@ public class MyArrayList<T> extends AbstractList<T> {
     }
 
     /**
+     * Takes an integer representing an index in the list and an element
+     * and then sets the item at that index to the new element. Returns
+     * the original item.
+     * @param i the index to put the new item
+     * @param x the object to be added
+     * @return the item in the index before being set
+     */
+    public T set(int i, T x) {
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException;
+
+        T y = array[i];
+        array[i] = x;
+        return y;
+    }
+
+    /**
      * Takes an object of type T and adds it to the array. If the array is
      * at capacity, it resizes, then adds.
      * @param i the index to put the new item
