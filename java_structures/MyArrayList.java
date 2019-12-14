@@ -126,4 +126,13 @@ public class MyArrayList<T> extends AbstractList<T> {
         }
         array = newArray;
     }
+
+    /**
+     * Effectively clears the ArrayList by setting its size to zero and then
+     * resizing the backing array.
+     */
+    public void clear() {
+        size = 0;
+        resize();
+    }
 }
