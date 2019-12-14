@@ -37,4 +37,12 @@ public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
         return this.get(0);
     }
 
+    /**
+     * Checks if the stack is empty
+     * @return boolean: true if empty, false otherwise
+     */
+    public boolean empty() {
+        return this.size == 0;
+    }
+
 }
