@@ -28,4 +28,13 @@ public class ArrayStack extends MyArrayStack<T> implements Stack<T> {
     public T pop() {
         return this.remove(0);
     }
+
+    /**
+     * Looks at the top element of the stack without removing it
+     * @return the top element of the stack
+     */
+    public T peek() {
+        return this.get(0);
+    }
+
 }
