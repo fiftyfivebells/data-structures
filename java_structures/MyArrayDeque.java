@@ -73,4 +73,29 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         return y;
     }
 
+    /**
+     * Adds an element to the list at the given index. It shifts elements
+     * either to the front or the back depending on where the element is 
+     * being inserted. This method uses modular arithmetic to make the array
+     * circular so that it "wraps around" when it hits the end.
+     * @param i is the index to insert the new item
+     * @param x is the item to insert
+     */
+    public void add(int i, T x) {
+        if (i < 0 || i > size) throw new IndexOutOfBoundsException();
+
+        if (size == array.length) resize();
+
+        if (i < size/2) {
+            front = (front == 0) ? array.length - 1 : front - 1;
+            for (int j = 0; j < i; j++)
+                array[(front+j)%array.length] = array[(front+j+1)%array.length];
+        } else {
+            for (int j = size; j > i; j--)
+                array[(front+j)%array.length] = array[(front+j-1)%array.length];
+        }
+        array[(front+i)%array.length] = x;
+        size++;
+    }
+
 }
