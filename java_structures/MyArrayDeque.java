@@ -98,4 +98,30 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         size++;
     }
 
+    /**
+     * Removes an element from the given index. It works like add: it shifts
+     * elements either from the front or the back depending on whether the
+     * removal is coming from the front or back half of the list. This also
+     * uses modular arithmetic to make the array circular.
+     * @param i the index to remove from
+     * @return x the item being removed from the list
+     */
+    public T remove(int i) {
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
+        T x = array[(front+i)%array.length];
+
+        if (i < size/2) {
+            for (int j = i; j > 0; j--)
+                array[(front+j)%array.length] = array[(front+j-1)%array.length];
+        } else {
+            for (int j = i; j < size-1; j++)
+                array[(front+j)%array.length] = array[(front+j+1)%array.length];
+        }
+
+        size--;
+        if (3*size < array.length) resize();
+
+        return x;
+    }
+
 }
