@@ -30,6 +30,9 @@ public class MyArrayDeque<T> extends AbstractList<T> {
      * @param t is the class of the type of object stored in this list
      */
     public MyArrayDeque(Class<T> t) {
-        
+        factory = new Factory(t);
+        array = factory.newArray(1);
+        size = 0;
+        front = 0;
     }
 }
