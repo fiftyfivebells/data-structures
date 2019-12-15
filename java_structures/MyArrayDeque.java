@@ -124,4 +124,21 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         return x;
     }
 
+    /**
+     * Creates a new array that is twice the length of the size attribute
+     * and copies each element from the current array into the new one, then
+     * sets the backing array to the new array. Also resets the array so
+     * that the front pointer is pointing back at index 0.
+     */
+    private void resize() {
+        // if size is 0, this will make an array of length 1
+        T[] newArray = factory.newArray(Math.max(1, size*2));
+
+        for (int i = 0; i < size; i++)
+            newArray[i] = array[(front+i)%array.length];
+
+        array = newArray;
+        front = 0;
+    }
+
 }
