@@ -55,4 +55,22 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         return array[(front+i)%array.length];
     }
 
+    /**
+     * Takes an int representing and index and an object, then replaces the
+     * object at that index with the given object. Returns the object that
+     * was replaced.
+     * @param i the index of the item in the array
+     * @param x the object to replace the one found
+     * @return y the object that was replaced
+     */
+    public T set(int i, T x) {
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
+
+        T y = this.get(i);
+
+        array[(front+i)%array.length] = x;
+
+        return y;
+    }
+
 }
