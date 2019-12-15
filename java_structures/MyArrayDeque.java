@@ -43,4 +43,16 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         return size;
     }
 
+    /**
+     * Takes an int representing an index and returns the item in the array
+     * that is stored at that index.
+     * @param i the index of the item in the array
+     * @return the item retrieved from the array
+     */
+    public T get(int i) {
+        if (i < 0 || i > size - 1) throw new IndexOutOfBoundsException();
+
+        return array[(front+i)%array.length];
+    }
+
 }
