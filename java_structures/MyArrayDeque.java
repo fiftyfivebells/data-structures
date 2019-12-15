@@ -35,4 +35,12 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         size = 0;
         front = 0;
     }
+
+    /**
+     * Returns the number of items currently in the array
+     */
+    public int size() {
+        return size;
+    }
+
 }
