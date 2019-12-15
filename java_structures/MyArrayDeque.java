@@ -141,4 +141,11 @@ public class MyArrayDeque<T> extends AbstractList<T> {
         front = 0;
     }
 
+    /**
+     * Clears out the array
+     */
+    public void clear() {
+        size = 0;
+        resize();
+    }
 }
