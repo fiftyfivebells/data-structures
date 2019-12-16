@@ -48,4 +48,9 @@ public class SkiplistSS<T> {
     height = 0;
     size = 0;
   }
+
+  /** Constructor: No argument constructor uses the default comparator. */
+  public SkiplistSS() {
+    this(new DefaultComparator<T>());
+  }
 }
