@@ -129,9 +129,9 @@ public class SkiplistSS<T> {
 
         // if the node is the sentinen and it's next pointer is null, the height needs to go down
         if (u == sentinel && u.next[h] == null) --height;
-
-        --h;
       }
+
+      --h;
     }
     if (removed) --size;
     return removed;
