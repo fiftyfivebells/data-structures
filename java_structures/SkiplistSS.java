@@ -28,6 +28,9 @@ public class SkiplistSS<T> {
   /** The node that sits to the left of the skiplist and holds all the search paths */
   protected Node<T> sentinel;
 
+  /** Used by the add(x) method to store the nodes traversed */
+  protected Node<T>[] stack;
+
   /** The height of the highest element in the skiplist */
   protected int height;
 
@@ -44,9 +47,12 @@ public class SkiplistSS<T> {
    * Constructor: Creates the sentinel node and random number generator, and also sets the height
    * and size to 0
    */
+  @SuppressWarnings("unchecked")
   public SkiplistSS(Comparator<T> c) {
     // set max height of sentinel to 32 (no node is likely to get that tall)
     sentinel = new Node<T>(null, 32);
+
+    stack = (Node<T>[]) Array.newInstance(Node.class, sentinel.next.length);
     comp = c;
     prng = new Random();
     height = 0;
