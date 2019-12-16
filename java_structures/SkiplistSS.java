@@ -188,4 +188,33 @@ public class SkiplistSS<T> {
     Node<T> u = findPrevNode(x);
     return (u.next[0] == null) ? null : u.next[0].x;
   }
+
+  public static void main(String[] args) {
+    int n = 100000;
+    SkiplistSS<Integer> sl = new SkiplistSS<Integer>();
+    SortedSet<Integer> ss = new TreeSet<Integer>();
+
+    System.out.println("Adding " + n + " elements");
+    for (int i = 0; i < n; i++) {
+      sl.add(2 * i);
+      ss.add(2 * i);
+    }
+
+    System.out.println("Searching");
+    for (int i = 0; i < 2 * n; i++) {
+      Integer x = sl.find(i);
+
+      if (x != null && !ss.contains(x))
+        System.out.println("Something went wrong: the TreeSet doesn't have " + x);
+    }
+
+    System.out.println("Removing");
+    for (int i = 0; i < n / 2; i++) {
+      sl.remove(4 * i);
+      ss.remove(4 * i);
+
+      if (sl.size() != ss.size())
+        System.out.println("Something went wrong: one of the sets didn't have a remove done.");
+    }
+  }
 }
