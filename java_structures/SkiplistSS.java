@@ -3,6 +3,8 @@ package java_structures;
 import java.lang.reflect.Array;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class SkiplistSS<T> {
 
