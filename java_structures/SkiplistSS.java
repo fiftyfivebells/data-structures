@@ -19,6 +19,10 @@ public class SkiplistSS<T> {
       this.x = x;
       next = (Node<T>[]) Array.newInstance(Node.class, h + 1);
     }
+
+    public int height() {
+      return next.length - 1;
+    }
   }
 
   /** The node that sits to the left of the skiplist and holds all the search paths */
