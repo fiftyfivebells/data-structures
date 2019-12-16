@@ -53,4 +53,21 @@ public class SkiplistSS<T> {
   public SkiplistSS() {
     this(new DefaultComparator<T>());
   }
+  /**
+   * Takes in an item x and searches through the skiplist for the node right before the node
+   * containing the data we're after, or right before where that node would be. Then returns that
+   * prior node
+   *
+   * @param x The item being searched for
+   * @return the node just before the node we want (or before where it would be)
+   */
+  private Node<T> findPrevNode(T x) {
+    Node<T> u = sentinel;
+    int h = height;
+    while (h >= 0) {
+      while (u.next[h] != null && comp.compare(u.next[h].x, x) < 0) u = u.next[h];
+      h--;
+    }
+    return u;
+  }
 }
