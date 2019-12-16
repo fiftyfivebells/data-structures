@@ -65,6 +65,14 @@ public class SkiplistSS<T> {
   }
 
   /**
+   * Getter: returns the size of the set
+   *
+   * @return the current size of the set
+   */
+  public int size() {
+    return this.size;
+  }
+  /**
    * Adds the provided element into the sorted set at the point where it should go.
    *
    * @param x The element to add into the set.
