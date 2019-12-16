@@ -25,10 +25,12 @@ public class SkiplistSS<T> {
 
   /** The height of the highest element in the skiplist */
   int height;
+  protected int height;
 
   /** The total size of skiplist (how many elemnts it holds) */
-  int size;
+  protected int size;
 
   /** The pseudo-random number generator (to get the heights) */
-  Random prng;
+  protected Random prng;
+
 }
