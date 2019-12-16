@@ -53,6 +53,7 @@ public class SkiplistSS<T> {
   public SkiplistSS() {
     this(new DefaultComparator<T>());
   }
+
   /**
    * Takes in an item x and searches through the skiplist for the node right before the node
    * containing the data we're after, or right before where that node would be. Then returns that
@@ -69,5 +70,17 @@ public class SkiplistSS<T> {
       h--;
     }
     return u;
+  }
+
+  /**
+   * Uses the findPrevNode method to get the node before what we're looking for, then either returns
+   * the following node if its data property is what we want or null otherwise.
+   *
+   * @param x The item we're searching for
+   * @return the node we want, or null if it doesn't exist
+   */
+  private T find(T x) {
+    Node<T> u = findPrevNode(x);
+    return (u.next[0] == null) ? null : u.next[0].x;
   }
 }
