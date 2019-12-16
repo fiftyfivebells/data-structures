@@ -101,6 +101,35 @@ public class SkiplistSS<T> {
   }
 
   /**
+   * Attempts to remove an item from the sorted set. If it can find the item somewhere, it takes it
+   * out and returns true if it was removed. Otherwise, returns false;
+   *
+   * @return true if the item was removed, false otherwise.
+   */
+  public boolean remove(T x) {
+    boolean removed = false;
+    Node<T> u = sentinel;
+    int h = height;
+    int c = 0;
+    while (h >= 0) {
+      while (u.next[h] != null && (c = comp.compare(u.next[h].x, x)) < 0) {
+        u = u.next[h];
+      }
+      if (u.next[h] != null && c == 0) {
+        removed = true;
+        u.next[h] = u.next[h].next[h];
+
+        // if the node is the sentinen and it's next pointer is null, the height needs to go down
+        if (u == sentinel && u.next[h] == null) --height;
+
+        --h;
+      }
+    }
+    if (removed) --size;
+    return removed;
+  }
+
+  /**
    * Chooses a random height for the new node by increasing the its count by 1 each time it
    * encounters a 1 in the least significant bit of a randomly generator number. Compares it with 1
    * for the first round, then continues shifting the bits of the 1 to the left each time. Returns
