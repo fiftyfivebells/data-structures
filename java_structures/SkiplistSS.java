@@ -25,7 +25,6 @@ public class SkiplistSS<T> {
   protected Node<T> sentinel;
 
   /** The height of the highest element in the skiplist */
-  int height;
   protected int height;
 
   /** The total size of skiplist (how many elemnts it holds) */
