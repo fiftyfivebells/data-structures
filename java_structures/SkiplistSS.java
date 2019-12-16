@@ -65,6 +65,62 @@ public class SkiplistSS<T> {
   }
 
   /**
+   * Adds the provided element into the sorted set at the point where it should go.
+   *
+   * @param x The element to add into the set.
+   * @return true if the element was added, false otherwise
+   */
+  public boolean add(T x) {
+    Node<T> u = sentinel;
+    int h = height;
+    int c = 0;
+
+    while (h >= 0) {
+      while (u.next[h] != null && (c = comp.compare(u.next[h].x, x)) < 0) u = u.next[h];
+
+      if (u.next[h] != null && c == 0) return false;
+      stack[h--] = u; // stores the node in the stack as we descend the path
+    }
+
+    Node<T> w = new Node<T>(x, chooseHeight());
+
+    // as long as the new node's height is greater than the height of the highest node in the set,
+    // add references back to the sentinel until height matches the new node's height
+    while (height < w.height()) stack[++height] = sentinel;
+
+    // for each reference in the new node, set its next to the corresponding node in the stack
+    // array, and set the stack array's corresponding node's next to the new node
+    for (int i = 0; i < w.next.length; i++) {
+      w.next[i] = stack[i].next[i];
+      stack[i].next[i] = w;
+    }
+
+    // increment size and return true, since we got through to the end and successfully added
+    size++;
+    return true;
+  }
+
+  /**
+   * Chooses a random height for the new node by increasing the its count by 1 each time it
+   * encounters a 1 in the least significant bit of a randomly generator number. Compares it with 1
+   * for the first round, then continues shifting the bits of the 1 to the left each time. Returns
+   * the number of 1s it encountered.
+   *
+   * @return the new height of the node
+   */
+  private int chooseHeight() {
+    int count = 0;
+    int z = prng.nextInt();
+    int x = 1;
+
+    while ((z & x) != 0) {
+      count++;
+      x <<= 1;
+    }
+
+    return count;
+  }
+  /**
    * Takes in an item x and searches through the skiplist for the node right before the node
    * containing the data we're after, or right before where that node would be. Then returns that
    * prior node
