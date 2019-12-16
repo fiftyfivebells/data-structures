@@ -1,6 +1,7 @@
 package java_structures;
 
 import java.lang.reflect.Array;
+import java.util.Comparator;
 import java.util.Random;
 
 public class SkiplistSS<T> {
@@ -33,4 +34,19 @@ public class SkiplistSS<T> {
   /** The pseudo-random number generator (to get the heights) */
   protected Random prng;
 
+  /** The comparator to allow the node values to be compared */
+  protected Comparator<T> comp;
+
+  /**
+   * Constructor: Creates the sentinel node and random number generator, and also sets the height
+   * and size to 0
+   */
+  public SkiplistSS(Comparator<T> c) {
+    // set max height of sentinel to 32 (no node is likely to get that tall)
+    sentinel = new Node<T>(null, 32);
+    comp = c;
+    prng = new Random();
+    height = 0;
+    size = 0;
+  }
 }
